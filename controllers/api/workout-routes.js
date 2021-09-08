@@ -3,8 +3,22 @@ const db = require("../../models");
 
 // GET /api/workouts
 router.get("/", (req, res) => {
-  //will use db.Workout.?
-  res.send("hit GET /api/workouts ok");
+  // db.Workout.find({}, (err, data) => {
+  //   if (err) {
+  //     console.log(err);
+  //   } else {
+  //     res.json(data);
+  //   }
+  // });
+  db.Workout.find({})
+    .then((dbWorkout) => {
+      console.log(dbWorkout);
+      res.json(dbWorkout);
+    })
+    .catch((err) => {
+      res.json(err);
+    });
+  //res.send("hit GET /api/workouts ok"); //this was just for setup
 });
 
 // GET /api/workouts/:id

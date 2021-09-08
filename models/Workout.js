@@ -49,6 +49,24 @@ const WorkoutSchema = new Schema({
 //   return this.isCool;
 // };
 
+/*
+This worked inserting into db using Robo 3T
+
+  {
+    "day": "2021-09-07T00:00:00Z",
+    "exercises": [
+      {
+        "type": "resistance",
+        "name": "Bicep Curl",
+        "duration": 20,
+        "weight": 100,
+        "reps": 10,
+        "sets": 4
+      }
+    ]
+  }
+*/
+
 const Workout = mongoose.model("Workout", WorkoutSchema);
 
 module.exports = Workout;
