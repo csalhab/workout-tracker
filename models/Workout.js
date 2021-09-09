@@ -37,6 +37,9 @@ const WorkoutSchema = new Schema({
       },
     },
   ],
+  totalDuration: {
+    type: Number,
+  },
 });
 
 // WorkoutSchema.methods.coolifier = function () {

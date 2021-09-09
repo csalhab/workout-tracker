@@ -34,6 +34,7 @@ router.post("/", ({ body }, res) => {
 
 // PUT /api/workouts/:id
 router.put("/:id", (req, res) => {
+  console.log("inside PUT, req.body: ", req.body);
   db.Workout.findOneAndUpdate(
     { _id: req.params.id },
     { $push: { exercises: req.body } },
