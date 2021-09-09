@@ -49,7 +49,14 @@ router.put("/:id", (req, res) => {
   console.log("inside PUT, req.body: ", req.body);
   db.Workout.findOneAndUpdate(
     { _id: req.params.id },
-    { $push: { exercises: req.body } },
+    {
+      //https://docs.mongodb.com/manual/reference/operator/update/inc/
+      //"The $inc operator increments a field by a specified value and has the following form:"
+      //this $inc is needed in order to get the new field totalDuration added to workouts that do not have as of yet have it!
+      //onlly after adding this, did I see totalDuration field added to the workout I added exercise to!
+      $inc: { totalDuration: req.body.duration },
+      $push: { exercises: req.body },
+    },
     { new: true }
   )
     .then((dbWorkout) => {
