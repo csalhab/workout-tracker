@@ -8,6 +8,18 @@ router.get("/", (req, res) => {
       console.log("start getLastWorkout: GET /api/workouts -------");
       console.log(dbWorkout);
       console.log("end getLastWorkout: GET /api/workouts -------");
+      //need/get last workout
+      const lastWorkout = dbWorkout[dbWorkout.length - 1];
+      console.log("lastWorkout: ", lastWorkout);
+      //durationSum will hold sum of duration as exercises are added (& must set equal to 0 else NaN!!)
+      let durationSum = 0;
+      //loop thru the last workout's exercises and calculate what will be set to totalDuration which is now a field in model and add field/totalDuration to workout
+      lastWorkout.exercises.forEach((exercise) => {
+        durationSum += exercise.duration;
+      });
+      //ad field/totalDuration to last workout
+      console.log("durationSum: ", durationSum);
+      lastWorkout.totalDuration = durationSum;
       res.json(dbWorkout);
     })
     .catch((err) => {
